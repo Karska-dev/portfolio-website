@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minesweeper · Oleksandra Panikarska</title>
+  <meta name="description" content="Minesweeper, the Windows classic, rebuilt from scratch in the browser with a mint palette. Twenty bombs, flags, and the rules you remember.">
+  <link rel="canonical" href="https://www.karska.dev/projects/minesweeper.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Minesweeper · Oleksandra Panikarska">
+  <meta property="og:description" content="The Windows classic, rebuilt from scratch in the browser.">
+  <meta property="og:url" content="https://www.karska.dev/projects/minesweeper.html">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip" href="#details">Skip to details</a>
+
+<header class="hero hero--project" id="top">
+  <div class="hero__intro">
+    <div class="masthead mono">
+      <a href="../index.html"><span aria-hidden="true">←</span>Oleksandra Panikarska</a>
+      <span class="masthead__where">Projects / (03)<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="10" cy="10" r="5.5"/><path d="M10 0v20M0 10h20"/></svg></span>
+    </div>
+    <h1 class="hero__title">Minesweeper</h1>
+    <p class="hero__lede">The Windows classic, rebuilt from scratch in the browser.</p>
+    <div class="hero__actions">
+      <a class="btn" href="https://karska-dev.github.io/Minesweeper-Game/" target="_blank" rel="noopener">Play it <span aria-hidden="true">↗</span></a>
+      <a class="btn btn--outline" href="https://github.com/Karska-dev/Minesweeper-Game" target="_blank" rel="noopener">View code <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+
+  <div class="card card--solo mono">
+    <div class="card__top"><span>(03)</span><span>2020</span></div>
+    <div class="card__field"><span class="label">Instructions</span><span class="card__value">Twenty bombs. Where are they?</span></div>
+    <svg class="card__art" viewBox="0 0 161 61" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M0.5 0.5H160.5M0.5 20.5H160.5M0.5 40.5H160.5M0.5 60.5H160.5M0.5 0.5V60.5M20.5 0.5V60.5M40.5 0.5V60.5M60.5 0.5V60.5M80.5 0.5V60.5M100.5 0.5V60.5M120.5 0.5V60.5M140.5 0.5V60.5M160.5 0.5V60.5"/><g fill="currentColor"><rect x="20.5" y="0.5" width="20" height="20"/><rect x="100.5" y="20.5" width="20" height="20"/><rect x="60.5" y="40.5" width="20" height="20"/><rect x="140.5" y="40.5" width="20" height="20"/></g></svg>
+    <div class="card__foot"><span class="label">Mint palette<br>// Mom's favorite game</span><span class="pill">Playable</span></div>
+  </div>
+</header>
+
+<main class="main" id="details">
+  <section class="panel" aria-labelledby="how-title">
+    <h2 class="section-title" id="how-title">How it plays</h2>
+    <ol class="steps">
+      <li class="step">
+        <span class="step__n mono">(1)</span>
+        <h3 class="step__title">Check a cell</h3>
+        <p class="muted">A checked cell shows how many bombs are around it.</p>
+      </li>
+      <li class="step">
+        <span class="step__n mono">(2)</span>
+        <h3 class="step__title">Flag the bombs</h3>
+        <p class="muted">Flag the cells you think are hiding one. You can unflag them too.</p>
+      </li>
+      <li class="step">
+        <span class="step__n mono">(3)</span>
+        <h3 class="step__title">Win or lose</h3>
+        <p class="muted">Check a bomb and you lose. Flag all twenty and you win.</p>
+      </li>
+    </ol>
+    <figure class="shot">
+      <img src="../assets/img/minesweeper.webp" width="1440" height="1080" alt="Minesweeper mid-game: a mint-coloured board with numbered cells and red flags." loading="lazy">
+    </figure>
+  </section>
+
+  <section class="panel panel--side" aria-labelledby="spec-title">
+    <h2 class="section-title" id="spec-title">Spec</h2>
+    <dl class="box spec">
+      <div class="spec__row"><dt>Year</dt><dd>2020</dd></div>
+      <div class="spec__row"><dt>Status</dt><dd>Playable</dd></div>
+      <div class="spec__row"><dt>Stack</dt><dd>JavaScript, HTML, CSS</dd></div>
+      <div class="spec__row"><dt>Bombs</dt><dd>20</dd></div>
+      <div class="spec__row"><dt>Palette</dt><dd>Mint</dd></div>
+    </dl>
+    <p class="muted">My mom&#x27;s favorite game, and mine too.</p>
+  </section>
+</main>
+
+<nav class="strip strip--nav" aria-label="More projects">
+  <a class="strip__cell" href="mailagent.html"><span class="strip__tag mono">(01) Coming soon</span><span>mailAgent</span></a>
+  <a class="strip__cell" href="loose-ends.html"><span class="strip__tag mono">(02) 2026</span><span>Loose Ends</span></a>
+  <a class="strip__cell" href="karska-dev-v1.html"><span class="strip__tag mono">(04) 2020</span><span>karska.dev, version one</span></a>
+  <a class="strip__cell" href="../index.html#projects"><span class="strip__tag strip__tag--quiet mono">← Home</span><span>All projects</span></a>
+</nav>
+
+</body>
+</html>
