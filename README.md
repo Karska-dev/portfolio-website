@@ -9,6 +9,7 @@ Plain HTML and CSS. There is no build step and no JavaScript.
 index.html            Homepage: headline, project cards, project list, experience, contact
 projects/             One page per project, all sharing the same layout
   mailagent.html
+  e-paperboard.html
   loose-ends.html
   minesweeper.html
   karska-dev-v1.html
