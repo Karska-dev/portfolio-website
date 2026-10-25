@@ -1,0 +1,32 @@
+{
+  "name": "e-paperBoard",
+  "order": 20,
+  "year": 2026,
+  "status": "v0.1.0",
+  "statusLabel": "Version",
+  "featured": true,
+  "lede": "Firmware for a battery-powered 7.5-inch e-paper wall display.",
+  "summary": "Firmware for a battery-powered 7.5-inch e-paper wall display: weather, a to-do list, a family calendar. The board wakes, downloads one image, draws it and goes back to sleep.",
+  "description": "e-paperBoard is firmware for a battery-powered 7.5-inch e-paper wall display: weather, a to-do list, a family calendar. The board wakes, downloads one image, draws it and goes back to sleep.",
+  "stack": ["C++", "PlatformIO", "ESP32-S3"],
+  "links": [{ "label": "View code", "url": "https://github.com/Karska-dev/e-paperBoard" }],
+  "card": {
+    "question": "How little can a board do?",
+    "art": "epaper",
+    "notes": ["7.5 inch e-paper", "Runs on a battery"]
+  },
+  "steps": {
+    "title": "How it works",
+    "items": [
+      { "title": "Wake", "text": "The board is asleep almost all the time. A timer or one of its three keys wakes it." },
+      { "title": "Download one image", "text": "It joins Wi-Fi and asks the server for the current screen. If the image has not changed, nothing is downloaded." },
+      { "title": "Draw and sleep", "text": "It draws the 800 × 480 image and goes back to sleep. The panel keeps the image without power." }
+    ]
+  },
+  "spec": [
+    { "label": "Display", "value": "7.5 inch e-paper, 800 × 480" },
+    { "label": "Input", "value": "3 keys: home, next, prev" },
+    { "label": "Power", "value": "2000 mAh battery" }
+  ],
+  "aside": "An educational project: every pattern and algorithm is named and explained where it is used. The source is meant to be read."
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Loose Ends",
+  "order": 30,
+  "year": 2026,
+  "status": "Live",
+  "featured": true,
+  "lede": "A reading tracker that thinks in series, not books.",
+  "summary": "A reading tracker that thinks in series, not books. Drop in a Goodreads export and it shows which series you are part-way through and what comes next.",
+  "description": "Loose Ends is a reading tracker that thinks in series, not books. Drop in a Goodreads export and it shows which series you are part-way through and what comes next.",
+  "stack": ["TypeScript", "Vite", "Cloudflare Workers"],
+  "links": [
+    { "label": "Open the app", "url": "https://looseends.karska-dev.workers.dev/" },
+    { "label": "View code", "url": "https://github.com/Karska-dev/LooseEnds" }
+  ],
+  "card": {
+    "question": "What comes next in the series?",
+    "art": "series",
+    "notes": ["Parsed in the browser", "Nothing uploaded"]
+  },
+  "steps": {
+    "title": "How it works",
+    "items": [
+      { "title": "Drop in an export", "text": "Drop in a Goodreads export. The file is parsed in the browser." },
+      { "title": "See your open series", "text": "It shows which series you are part-way through." },
+      { "title": "Know what comes next", "text": "And what comes next in each one." }
+    ]
+  },
+  "spec": [
+    { "label": "Account", "value": "None" },
+    { "label": "Uploads", "value": "Nothing uploaded" }
+  ],
+  "screenshot": {
+    "src": "../../assets/img/loose-ends.webp",
+    "alt": "The Loose Ends series board: a summary of series in progress, then each series with its next unread book."
+  },
+  "aside": "One of the small tools I build on the side because I want to use them myself."
+}

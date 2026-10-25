@@ -1,0 +1,33 @@
+---
+// Picks a drawing by name.
+//
+// Pattern: lookup table instead of a chain of if/else. The JSON file says
+// "art": "series"; this map turns that word into a component. The schema only
+// accepts names from artNames, and `satisfies` makes TypeScript check that
+// every one of those names has a drawing here.
+
+import type { artNames } from '../content.config';
+import Barcode from './art/Barcode.astro';
+import Browser from './art/Browser.astro';
+import Epaper from './art/Epaper.astro';
+import Grid from './art/Grid.astro';
+import Series from './art/Series.astro';
+
+type ArtName = (typeof artNames)[number];
+
+const drawings = {
+  barcode: Barcode,
+  browser: Browser,
+  epaper: Epaper,
+  grid: Grid,
+  series: Series,
+} satisfies Record<ArtName, unknown>;
+
+interface Props {
+  name: ArtName;
+}
+
+const Drawing = drawings[Astro.props.name];
+---
+
+<Drawing />

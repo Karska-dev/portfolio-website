@@ -1,0 +1,50 @@
+---
+// The shell every page shares: <head>, fonts, the stylesheet, the skip link.
+//
+// Pattern: layout with a slot. A page passes its own values as props and its
+// own content as children; <slot /> marks where that content is placed. It is
+// the same idea as a master page or a Razor _Layout with @RenderBody().
+
+import '../styles/global.css';
+// "?url" asks the bundler for the final address of the file instead of its
+// contents. The build renames files with a content hash for caching, so the
+// address is only known at build time.
+import headingFont from '../assets/fonts/bricolage-grotesque-latin-wght-normal.woff2?url';
+import { withBase } from '../lib/projects';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Short text for link previews; falls back to the description. */
+  socialDescription?: string;
+  ogType?: 'website' | 'article';
+  /** Where the "skip" link for keyboard users jumps to. */
+  skip: { href: string; label: string };
+}
+
+const { title, description, socialDescription = description, ogType = 'website', skip } = Astro.props;
+
+// Astro.site comes from astro.config.mjs, Astro.url is the page being built.
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={socialDescription} />
+    <meta property="og:url" content={canonical} />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="preload" href={headingFont} as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <a class="skip" href={skip.href}>{skip.label}</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "name": "mailAgent",
+  "order": 10,
+  "status": "Coming soon",
+  "badge": "Latest",
+  "comingSoon": true,
+  "statusNote": "In progress. The app and code links will appear here when it ships.",
+  "featured": true,
+  "lede": "An email agent that learns how you handle your inbox, then does it for you.",
+  "summary": "An email agent that learns how you handle your inbox and then does it for you, with AI that never leaves your computer.",
+  "description": "mailAgent is an email agent that learns how you handle your inbox and then does it for you, with AI that never leaves your computer. Coming soon.",
+  "card": {
+    "question": "Can an inbox run itself?",
+    "art": "barcode",
+    "extra": { "label": "Runs on", "value": "Your computer" },
+    "notes": ["Local AI", "Learns your inbox"]
+  },
+  "steps": {
+    "title": "How it works",
+    "items": [
+      { "title": "Learns your habits", "text": "It learns how you handle your inbox." },
+      { "title": "Takes over the routine", "text": "Then it does it for you." },
+      { "title": "Stays on your computer", "text": "The AI never leaves your computer." }
+    ]
+  },
+  "spec": [
+    { "label": "Runs on", "value": "Your computer" },
+    { "label": "AI", "value": "Local" }
+  ],
+  "screenshot": {
+    "src": "../../assets/img/mailagent.webp",
+    "alt": "mailAgent working through a demo inbox: it proposes to unsubscribe from a promotional email and delete it, and asks whether to remember that as a rule. The rules it has learned are listed on the right."
+  },
+  "aside": "One of the small tools I build on the side because I want to use them myself."
+}

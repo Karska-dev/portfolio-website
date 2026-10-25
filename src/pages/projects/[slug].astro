@@ -1,0 +1,106 @@
+---
+// One template, many pages.
+//
+// Pattern: dynamic route with static generation. The square brackets in the
+// file name mark a placeholder. getStaticPaths() returns one item per project;
+// for each item Astro runs this template once and writes one HTML file. With
+// five projects the build produces five pages, and a sixth JSON file would
+// produce a sixth page with no other change.
+
+import { Image } from 'astro:assets';
+import Mark from '../../components/Mark.astro';
+import MoreProjects from '../../components/MoreProjects.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import Base from '../../layouts/Base.astro';
+import { getProjects, withBase, type ListedProject } from '../../lib/projects';
+import { keepTogether } from '../../lib/text';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    // Fills the [slug] in the file name: /projects/loose-ends/
+    params: { slug: project.slug },
+    // Handed to the template below as Astro.props.
+    props: { project, others: projects.filter((other) => other !== project) },
+  }));
+}
+
+interface Props {
+  project: ListedProject;
+  others: ListedProject[];
+}
+
+const { project, others } = Astro.props;
+const { data } = project;
+
+// Long names get a smaller title so they fit on one line where there is room.
+const longTitle = data.name.length > 11;
+---
+
+<Base
+  title={`${data.name} · Oleksandra Panikarska`}
+  description={data.description}
+  socialDescription={data.lede}
+  ogType="article"
+  skip={{ href: '#details', label: 'Skip to details' }}
+>
+  <header class="hero hero--project" id="top">
+    <div class="hero__intro">
+      <div class="masthead mono">
+        <a href={withBase('/')}><span aria-hidden="true">←</span>Oleksandra Panikarska</a>
+        <span class="masthead__where">Projects / ({project.number})<Mark /></span>
+      </div>
+      <h1 class:list={['hero__title', { 'hero__title--long': longTitle }]}>{data.name}</h1>
+      <p class="hero__lede" set:html={keepTogether(data.lede)} />
+
+      {data.links.length > 0 ? (
+        <div class="hero__actions">
+          {data.links.map((link, index) => (
+            <a class:list={['btn', { 'btn--outline': index > 0 }]} href={link.url} target="_blank" rel="noopener">
+              {link.label} <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="mono muted">{data.statusNote}</p>
+      )}
+    </div>
+
+    <ProjectCard project={project} solo />
+  </header>
+
+  <main class="main" id="details">
+    <section class="panel" aria-labelledby="how-title">
+      <h2 class="section-title" id="how-title">{data.steps.title}</h2>
+      <ol class="steps">
+        {data.steps.items.map((step, index) => (
+          <li class="step">
+            <span class="step__n mono">({index + 1})</span>
+            <h3 class="step__title">{step.title}</h3>
+            <p class="muted">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+
+      {data.screenshot && (
+        <figure class:list={['shot', { 'shot--narrow': data.screenshot.narrow }]}>
+          {/* <Image> resizes the picture at build time and writes its width and
+              height into the HTML, so the page does not jump while it loads. */}
+          <Image src={data.screenshot.src} alt={data.screenshot.alt} loading="lazy" />
+        </figure>
+      )}
+    </section>
+
+    <section class="panel panel--side" aria-labelledby="spec-title">
+      <h2 class="section-title" id="spec-title">Spec</h2>
+      <dl class="box spec">
+        {project.spec.map((row) => (
+          <div class="spec__row"><dt>{row.label}</dt><dd>{row.value}</dd></div>
+        ))}
+      </dl>
+      <p class="muted">{data.aside}</p>
+    </section>
+  </main>
+
+  <MoreProjects projects={others} />
+</Base>

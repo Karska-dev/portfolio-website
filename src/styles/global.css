@@ -1,0 +1,452 @@
+/* karska.dev — Spec Sheet design
+   One global stylesheet. Tokens first, then layout, then components.
+   Astro bundles and minifies this file at build time. */
+
+/* Fonts are self-hosted (SIL Open Font License, see assets/fonts/LICENSE.txt). */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('../assets/fonts/bricolage-grotesque-latin-wght-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/dm-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/dm-mono-latin-500-normal.woff2') format('woff2');
+}
+
+:root {
+  --ground: #ECECE8;
+  --paper: #FFFFFF;
+  --ink: #111111;
+  --muted: #5A5A55;
+  --line: #CFCFC8;
+  --line-soft: #E2E2DC;
+  --box: #D9D9D2;
+  --accent: #1F4FD8;
+
+  --sans: 'Bricolage Grotesque', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --pad: 48px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, p, dl, dd { margin: 0; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 4px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+img, svg { display: block; max-width: 100%; }
+
+.skip {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  z-index: 10;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.skip:focus { top: 8px; }
+
+/* ---------- Small type ---------- */
+
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.label { font-size: 11px; line-height: 1.4; }
+
+.pill {
+  flex: none;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 1px 9px;
+  white-space: nowrap;
+}
+
+.muted { color: var(--muted); }
+
+/* A line may break after any hyphen; this keeps a hyphenated word whole. */
+.nowrap { white-space: nowrap; }
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 0 28px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 18px;
+  font-weight: 500;
+}
+.btn:hover { background: var(--accent); border-color: var(--accent); text-decoration: none; }
+.btn--outline { background: transparent; color: var(--ink); }
+.btn--outline:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+.text-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  font-weight: 500;
+}
+.text-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
+}
+
+/* ---------- Hero (top band) ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+  border-bottom: 1px solid var(--line);
+}
+.hero--project { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+
+.hero__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+  padding: var(--pad) var(--pad) 44px;
+}
+.hero--project .hero__intro { gap: 26px; padding-top: 34px; }
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  font-size: 13px;
+}
+.masthead a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+.masthead__where {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero__title {
+  font-size: clamp(46px, 5.9vw, 82px);
+  line-height: 0.94;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+}
+.hero--project .hero__title {
+  font-size: clamp(56px, 8.6vw, 118px);
+  line-height: 0.92;
+}
+.hero--project .hero__title--long { font-size: clamp(44px, 6.2vw, 86px); }
+
+.hero__lede {
+  max-width: 500px;
+  font-size: 23px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.hero__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: auto;
+}
+/* margin-left keeps the block on the right edge when it wraps under the button */
+.hero__role { margin: 0 0 0 auto; line-height: 1.5; text-align: right; }
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+/* ---------- Spec cards ---------- */
+
+/* The 1px gaps show the container colour, which draws the rules between
+   cards in every layout (three across, or stacked). */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 20px 22px 24px;
+  background: var(--ground);
+}
+.card--solo {
+  gap: 18px;
+  padding: 24px 28px 28px;
+  border-left: 1px solid var(--line);
+}
+
+.card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 22px;
+}
+
+.card__name {
+  font-family: var(--sans);
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-transform: none;
+}
+
+.card__name a,
+.project__name a {
+  display: inline-block;
+  padding-block: 8px;
+  margin-block: -8px;
+}
+
+.card__field { display: flex; flex-direction: column; gap: 4px; }
+.card__value { font-size: 16px; line-height: 1.3; }
+.card--solo .card__value { font-size: 22px; line-height: 1.25; }
+
+.card__art { width: auto; height: auto; }
+.card--solo .card__art { width: 100%; max-width: 400px; }
+
+.barcode {
+  height: 14px;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px);
+}
+.card--solo .barcode { height: 28px; max-width: 400px; }
+
+.card__foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+/* ---------- Main band (white) ---------- */
+
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  background: var(--paper);
+}
+
+.panel {
+  min-width: 0;
+  padding: 64px var(--pad) 72px;
+}
+.panel--side {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-left: 1px solid var(--line-soft);
+}
+
+.section-title {
+  margin-bottom: 44px;
+  font-size: clamp(36px, 4vw, 52px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+.panel--side .section-title { margin-bottom: 16px; }
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 44px 56px;
+}
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.project__name { font-size: 19px; font-weight: 600; }
+.project__name .mono { font-weight: 400; color: var(--muted); }
+.project__stack { letter-spacing: 0.04em; color: var(--muted); }
+
+.box {
+  border: 1px solid var(--box);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin: 0;
+  padding: 24px;
+  list-style: none;
+}
+.timeline__role { font-weight: 500; }
+
+.spec { padding: 8px 24px; }
+.spec__row {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #E8E8E2;
+}
+.spec__row:last-child { border-bottom: 0; }
+.spec dt { flex: 0 0 92px; color: var(--muted); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 32px 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.step { display: flex; flex-direction: column; gap: 8px; }
+.step__n { letter-spacing: 0.06em; color: var(--muted); }
+.step__title { font-size: 19px; font-weight: 600; }
+
+.shot {
+  margin: 56px 0 0;
+  border: 1px solid var(--box);
+  background: #F4F4F0;
+}
+.shot img {
+  width: 100%;
+  height: auto;
+}
+/* Near-square captures would be very tall at full width. */
+.shot--narrow img {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ---------- Bottom strip (contact, more projects) ---------- */
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line-soft);
+  border-top: 1px solid var(--line-soft);
+  font-size: 18px;
+}
+.strip__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+  min-height: 124px;
+  padding: 28px 32px;
+  background: var(--paper);
+  overflow-wrap: anywhere;
+}
+.strip__cell svg { flex: none; stroke: var(--accent); }
+.strip__cell--quiet { color: var(--muted); }
+.strip__cell--quiet svg { stroke: var(--muted); }
+.strip__tag { font-size: 12px; letter-spacing: 0.06em; color: var(--accent); }
+.strip__tag--quiet { color: var(--muted); }
+.strip--nav .strip__cell { gap: 14px; padding-top: 26px; }
+/* Four other projects plus Home. */
+.strip--nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* ---------- Narrower screens ---------- */
+
+/* Below this the three cards get too narrow beside the headline. */
+@media (max-width: 1240px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .cards { border-left: 0; border-top: 1px solid var(--line); }
+  .hero__title br { display: none; }
+}
+
+@media (max-width: 1240px) {
+  .strip--nav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .strip--nav .strip__cell:last-child { grid-column: span 2; }
+}
+
+@media (max-width: 980px) {
+  .main { grid-template-columns: minmax(0, 1fr); }
+  .panel--side { border-left: 0; border-top: 1px solid var(--line-soft); }
+  .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Five cells in two columns leave one over; let it fill its row. */
+  .strip--nav .strip__cell:last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 900px) {
+  .hero--project { grid-template-columns: minmax(0, 1fr); }
+  .card--solo { border-left: 0; border-top: 1px solid var(--line); }
+}
+
+@media (max-width: 720px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 600px) {
+  :root { --pad: 24px; }
+  .panel { padding-top: 48px; padding-bottom: 56px; }
+  .section-title { margin-bottom: 32px; }
+  .card, .card--solo { padding-left: 24px; padding-right: 24px; }
+  .strip { grid-template-columns: minmax(0, 1fr); }
+  .strip__cell { min-height: 0; padding: 22px 24px; }
+  .hero__role { margin-left: 0; text-align: left; }
+  /* Long single-word titles must still fit a 320px screen. */
+  .hero--project .hero__title,
+  .hero--project .hero__title--long { font-size: clamp(38px, 14vw, 56px); overflow-wrap: anywhere; }
+  .shot { margin-top: 40px; }
+}

@@ -1,0 +1,51 @@
+---
+// The "spec sheet" card. Used twice: three across on the homepage, and once
+// (larger, without the name) at the top of a project page.
+//
+// Pattern: one component, two variants. The `solo` prop switches the few
+// things that differ, so the card's structure is written once.
+
+import type { ListedProject } from '../lib/projects';
+import Art from './Art.astro';
+
+interface Props {
+  project: ListedProject;
+  /** The large variant used on a project page. */
+  solo?: boolean;
+}
+
+const { project, solo = false } = Astro.props;
+const { data } = project;
+
+// The homepage card is an <article> with a heading; on the project page the
+// heading is the page title, so the card is a plain <div>.
+const Tag = solo ? 'div' : 'article';
+---
+
+<Tag class:list={['card', { 'card--solo mono': solo }]}>
+  <div class="card__top">
+    <span>({project.number})</span>
+    {data.badge ? <span class="pill">{data.badge}</span> : <span>{data.year}</span>}
+  </div>
+
+  {!solo && <h2 class="card__name"><a href={project.url}>{data.name}</a></h2>}
+
+  <div class="card__field">
+    <span class="label">Instructions</span>
+    <span class="card__value">{data.card.question}</span>
+  </div>
+
+  <Art name={data.card.art} />
+
+  {data.card.extra && (
+    <div class="card__field">
+      <span class="label">{data.card.extra.label}</span>
+      <span class="card__value">{data.card.extra.value}</span>
+    </div>
+  )}
+
+  <div class="card__foot">
+    <span class="label">{data.card.notes[0]}<br />// {data.card.notes[1]}</span>
+    <span class="pill">{data.status}</span>
+  </div>
+</Tag>

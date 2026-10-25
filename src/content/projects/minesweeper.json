@@ -1,0 +1,36 @@
+{
+  "name": "Minesweeper",
+  "order": 40,
+  "year": 2020,
+  "status": "Playable",
+  "lede": "The Windows classic, rebuilt from scratch in the browser.",
+  "summary": "The Windows classic, rebuilt from scratch in the browser with a mint palette. Twenty bombs, flags, and the rules you remember.",
+  "description": "Minesweeper, the Windows classic, rebuilt from scratch in the browser with a mint palette. Twenty bombs, flags, and the rules you remember.",
+  "stack": ["JavaScript", "HTML", "CSS"],
+  "links": [
+    { "label": "Play it", "url": "https://karska-dev.github.io/Minesweeper-Game/" },
+    { "label": "View code", "url": "https://github.com/Karska-dev/Minesweeper-Game" }
+  ],
+  "card": {
+    "question": "Twenty bombs. Where are they?",
+    "art": "grid",
+    "notes": ["Mint palette", "Mom's favorite game"]
+  },
+  "steps": {
+    "title": "How it plays",
+    "items": [
+      { "title": "Check a cell", "text": "A checked cell shows how many bombs are around it." },
+      { "title": "Flag the bombs", "text": "Flag the cells you think are hiding one. You can unflag them too." },
+      { "title": "Win or lose", "text": "Check a bomb and you lose. Flag all twenty and you win." }
+    ]
+  },
+  "spec": [
+    { "label": "Bombs", "value": "20" },
+    { "label": "Palette", "value": "Mint" }
+  ],
+  "screenshot": {
+    "src": "../../assets/img/minesweeper.webp",
+    "alt": "Minesweeper mid-game: a mint-coloured board with numbered cells and red flags."
+  },
+  "aside": "My mom's favorite game, and mine too."
+}
