@@ -1,15 +1,12 @@
 # portfolio-website
 Source for karska.dev: my personal site, with experience, projects and contact.
 
-This branch holds two versions of the same site side by side:
+Built with [Astro](https://astro.build): each project is one JSON file, and the pages are
+generated from it. The finished site is plain HTML and CSS with no JavaScript.
 
-- **The Astro version** in `src/`: each project is one JSON file and the pages are generated.
-- **The hand-written version** (`index.html`, `projects/`, `css/`, `assets/`): kept for
-  comparison until the Astro version replaces it.
+## Run it
 
-## The Astro version
-
-Needs Node.js 22.12 or newer.
+Needs Node.js 22 (the version is pinned in `.nvmrc`).
 
 ```
 npm install        # once: downloads Astro into node_modules/
@@ -18,6 +15,8 @@ npm run build      # writes the finished site to dist/
 npm run preview    # serves dist/ exactly as a host would
 npm run check      # type-checks the templates and the project data
 ```
+
+## Where things are
 
 ```
 src/
@@ -28,14 +27,17 @@ src/
   layouts/Base.astro       The shell shared by every page (<head>, fonts, styles)
   components/              Reusable pieces: the card, a list entry, the bottom strips
   components/art/          The small line drawings on the cards
-  pages/index.astro        The homepage                    ->  /
+  pages/index.astro        The homepage                        ->  /
   pages/projects/[slug].astro  One template for all project pages  ->  /projects/<name>/
+  pages/404.astro          Shown for any address that has no page
   styles/global.css        All styles. Colours and fonts are variables at the top
   assets/                  Fonts and screenshots, processed by the build
 public/                    Files copied to the site as they are (favicon)
+netlify.toml               Build settings for Netlify
+.nvmrc                     The Node.js version, for Netlify and for nvm
 ```
 
-### Add a project
+## Add a project
 
 1. Copy a file in `src/content/projects/` and rename it. The file name becomes the address.
 2. Fill in the fields. `order` sets its position; the numbers such as (02) follow from it.
@@ -43,11 +45,10 @@ public/                    Files copied to the site as they are (favicon)
 
 Its card (when `featured` is true), list entry, page and "More projects" links are generated.
 
-## The hand-written version
+## Deploy
 
-Plain HTML and CSS with no build step. Open `index.html` in a browser.
-Each project appears in several places: its card and list entry in `index.html`, its own
-page in `projects/`, and a link at the bottom of every other project page.
+Netlify builds and publishes the site on every push to the production branch, using the
+settings in `netlify.toml`: it runs `npm run build` and serves the `dist/` folder.
 
 ## Credits
 

@@ -1,0 +1,8 @@
+# Netlify reads this file on every deploy, so the build settings live in the
+# repo instead of in the dashboard. The Node.js version comes from .nvmrc.
+
+[build]
+  # Runs `astro build`, which writes the finished site to dist/.
+  command = "npm run build"
+  # The folder Netlify publishes. Nothing else in the repo is served.
+  publish = "dist"

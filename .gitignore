@@ -5,3 +5,4 @@ dist/
 
 # Local working rules for Claude sessions; kept out of the public repo
 CLAUDE.md
+.netlify/

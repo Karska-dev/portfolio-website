@@ -8,6 +8,7 @@
 // produce a sixth page with no other change.
 
 import { Image } from 'astro:assets';
+import Contact from '../../components/Contact.astro';
 import Mark from '../../components/Mark.astro';
 import MoreProjects from '../../components/MoreProjects.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
@@ -103,4 +104,8 @@ const longTitle = data.name.length > 11;
   </main>
 
   <MoreProjects projects={others} />
+
+  {/* Visitors often land on a project page from a link, so the contact
+      details are repeated here instead of living only on the homepage. */}
+  <Contact />
 </Base>

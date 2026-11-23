@@ -20,9 +20,11 @@ interface Props {
   ogType?: 'website' | 'article';
   /** Where the "skip" link for keyboard users jumps to. */
   skip: { href: string; label: string };
+  /** Asks search engines not to list this page (used by the 404 page). */
+  noindex?: boolean;
 }
 
-const { title, description, socialDescription = description, ogType = 'website', skip } = Astro.props;
+const { title, description, socialDescription = description, ogType = 'website', skip, noindex = false } = Astro.props;
 
 // Astro.site comes from astro.config.mjs, Astro.url is the page being built.
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -35,6 +37,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />

@@ -142,6 +142,8 @@ img, svg { display: block; max-width: 100%; }
   border-bottom: 1px solid var(--line);
 }
 .hero--project { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+/* One column, for pages with no card beside the title (the 404 page). */
+.hero--single { grid-template-columns: minmax(0, 1fr); }
 
 .hero__intro {
   display: flex;

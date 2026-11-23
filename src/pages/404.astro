@@ -1,0 +1,35 @@
+---
+// The page shown for any address that has no page.
+//
+// Astro builds this file as dist/404.html. Netlify looks for a file with
+// exactly that name and serves it, with the status code 404, whenever a
+// visitor asks for a page that does not exist. No configuration is needed.
+
+import Contact from '../components/Contact.astro';
+import Mark from '../components/Mark.astro';
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/projects';
+---
+
+<Base
+  title="Page not found · Oleksandra Panikarska"
+  description="There is no page at this address."
+  skip={{ href: '#message', label: 'Skip to message' }}
+  noindex
+>
+  <header class="hero hero--single" id="top">
+    <div class="hero__intro" id="message">
+      <div class="masthead mono">
+        <a href={withBase('/')}><span aria-hidden="true">←</span>Oleksandra Panikarska</a>
+        <span class="masthead__where">Error / (404)<Mark /></span>
+      </div>
+      <h1 class="hero__title">Not found</h1>
+      <p class="hero__lede">There is no page at this address. It may have moved, or the link has a typo.</p>
+      <div class="hero__actions">
+        <a class="btn" href={withBase('/')}>Go to the homepage <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <Contact />
+</Base>

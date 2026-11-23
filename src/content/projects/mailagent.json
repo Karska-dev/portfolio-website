@@ -1,35 +1,41 @@
 {
-  "name": "mailAgent",
+  "name": "Mail Agent",
   "order": 10,
-  "status": "Coming soon",
+  "year": 2026,
+  "status": "v1.0.0",
+  "statusLabel": "Version",
   "badge": "Latest",
-  "comingSoon": true,
-  "statusNote": "In progress. The app and code links will appear here when it ships.",
   "featured": true,
   "lede": "An email agent that learns how you handle your inbox, then does it for you.",
-  "summary": "An email agent that learns how you handle your inbox and then does it for you, with AI that never leaves your computer.",
-  "description": "mailAgent is an email agent that learns how you handle your inbox and then does it for you, with AI that never leaves your computer. Coming soon.",
+  "summary": "An email assistant that learns how you handle your inbox and then does it for you. It runs on your Mac, and its AI can run there too, so your mail never has to leave your computer.",
+  "description": "Mail Agent is a private email assistant for the Mac. It learns how you handle your inbox from plain-English answers and then does it for you, with AI that can run entirely on your computer.",
+  "stack": ["Python", "IMAP", "Ollama"],
+  "links": [
+    { "label": "Download for Mac", "url": "https://github.com/Karska-dev/mail-agent/releases/latest" },
+    { "label": "View code", "url": "https://github.com/Karska-dev/mail-agent" }
+  ],
   "card": {
     "question": "Can an inbox run itself?",
     "art": "barcode",
-    "extra": { "label": "Runs on", "value": "Your computer" },
+    "extra": { "label": "Runs on", "value": "Your Mac" },
     "notes": ["Local AI", "Learns your inbox"]
   },
   "steps": {
     "title": "How it works",
     "items": [
-      { "title": "Learns your habits", "text": "It learns how you handle your inbox." },
-      { "title": "Takes over the routine", "text": "Then it does it for you." },
-      { "title": "Stays on your computer", "text": "The AI never leaves your computer." }
+      { "title": "Reads each new email", "text": "It works out what the email is and what is in it: a promotion, a bill, a coupon code, a deadline." },
+      { "title": "Asks once, in plain English", "text": "For an email it has not seen before, it asks what to do. Your answer becomes a rule." },
+      { "title": "Handles the rest", "text": "Clear matches are handled automatically. When a rule only partly fits, it asks instead of guessing." }
     ]
   },
   "spec": [
-    { "label": "Runs on", "value": "Your computer" },
-    { "label": "AI", "value": "Local" }
+    { "label": "Runs on", "value": "macOS: Mac app, or Python 3.10+" },
+    { "label": "AI", "value": "Built-in, local (Ollama) or Claude" },
+    { "label": "License", "value": "MIT" }
   ],
   "screenshot": {
     "src": "../../assets/img/mailagent.webp",
-    "alt": "mailAgent working through a demo inbox: it proposes to unsubscribe from a promotional email and delete it, and asks whether to remember that as a rule. The rules it has learned are listed on the right."
+    "alt": "Mail Agent in auto mode, working through a demo inbox: three emails handled automatically, two skipped for later, and to-dos for two bills added on the right."
   },
   "aside": "One of the small tools I build on the side because I want to use them myself."
 }
