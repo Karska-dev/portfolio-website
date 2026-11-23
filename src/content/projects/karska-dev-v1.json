@@ -1,0 +1,37 @@
+{
+  "name": "karska.dev, version one",
+  "order": 50,
+  "year": 2020,
+  "status": "Archived",
+  "lede": "The first version of this site, hand-built without a framework.",
+  "summary": "The first version of this site, hand-built without a framework while I was learning front-end development.",
+  "description": "The first version of karska.dev, hand-built without a framework in HTML, JavaScript and Sass.",
+  "stack": ["HTML", "JavaScript", "Sass"],
+  "links": [
+    { "label": "See the original", "url": "https://karska-dev.github.io/Site-Portfolio/" },
+    { "label": "View code", "url": "https://github.com/Karska-dev/Site-Portfolio", "showInList": false }
+  ],
+  "card": {
+    "question": "What did version one look like?",
+    "art": "browser",
+    "notes": ["HTML, JS, Sass", "No framework"]
+  },
+  "steps": {
+    "title": "How it was built",
+    "items": [
+      { "title": "Designed first", "text": "The layout was drawn in Adobe XD before any code." },
+      { "title": "Written by hand", "text": "Plain HTML and JavaScript, with the styles in Sass." },
+      { "title": "Light and dark", "text": "A toggle switches the whole site between a light and a dark theme." }
+    ]
+  },
+  "spec": [
+    { "label": "Design", "value": "Adobe XD" },
+    { "label": "Theme", "value": "Light and dark" }
+  ],
+  "screenshot": {
+    "src": "../../assets/img/karska-dev-v1.webp",
+    "alt": "The first karska.dev: a split dark and light page reading Hello, I'm Oleksandra, a software developer.",
+    "narrow": true
+  },
+  "aside": "Built while I was learning front-end development. This site replaced it in 2026."
+}

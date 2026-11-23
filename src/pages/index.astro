@@ -1,0 +1,73 @@
+---
+// The homepage. A file in src/pages/ becomes a page at the matching address:
+// this one is "/". The part between the --- lines runs once, at build time,
+// on your computer. Nothing in it is sent to the visitor's browser.
+
+import Contact from '../components/Contact.astro';
+import Mark from '../components/Mark.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProjectEntry from '../components/ProjectEntry.astro';
+import Base from '../layouts/Base.astro';
+import { getProjects } from '../lib/projects';
+
+const projects = await getProjects();
+const featured = projects.filter((project) => project.data.featured);
+---
+
+<Base
+  title="Oleksandra Panikarska · Software engineer"
+  description="Oleksandra Panikarska is a software engineer at Microsoft building backend services with C# and Azure, with AI built in. Experience, projects and contact."
+  socialDescription="Backend services, with AI built in. Experience, projects and contact."
+  skip={{ href: '#projects', label: 'Skip to projects' }}
+>
+  <header class="hero" id="top">
+    <div class="hero__intro">
+      <div class="masthead mono">
+        <span>Oleksandra Panikarska</span>
+        <Mark />
+      </div>
+      <h1 class="hero__title">Backend <br />services, <br />with AI <br />built in.</h1>
+      <div class="hero__foot">
+        <a class="btn" href="#projects">See projects <span aria-hidden="true">→</span></a>
+        <p class="hero__role mono">Software Engineer II<br />Microsoft<br />New York</p>
+      </div>
+    </div>
+
+    <div class="cards mono">
+      {featured.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="panel" id="projects" aria-labelledby="projects-title">
+      <h2 class="section-title" id="projects-title">Projects in action</h2>
+      <div class="project-list">
+        {projects.map((project) => <ProjectEntry project={project} />)}
+      </div>
+    </section>
+
+    <section class="panel panel--side" id="experience" aria-labelledby="experience-title">
+      <h2 class="section-title" id="experience-title">Experience</h2>
+      <ol class="box timeline">
+        <li>
+          <div class="muted">2023 – now</div>
+          <div class="timeline__role">Software Engineer II, Microsoft</div>
+          <div class="muted">Backend work with C# and Azure, including integrating AI into applications.</div>
+        </li>
+        <li>
+          <div class="muted">2021 – 2023</div>
+          <div class="timeline__role">Software Engineer, Microsoft</div>
+          <div class="muted">Joined through the Microsoft Leap apprenticeship, then stayed on full-time.</div>
+        </li>
+        <li>
+          <div class="muted">2019 – 2021</div>
+          <div class="timeline__role">Web Software Developer, self-employed</div>
+          <div class="muted">Open-source contributions to Pontoon, Taskcluster and the Firefox Containers add-on, all Mozilla projects.</div>
+        </li>
+      </ol>
+      <p class="muted">Five years at Microsoft, starting from the Leap apprenticeship. On the side I build small tools I want to use myself.</p>
+    </section>
+  </main>
+
+  <Contact />
+</Base>

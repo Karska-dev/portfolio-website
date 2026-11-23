@@ -1,0 +1,26 @@
+---
+// The strip at the foot of a project page: every other project, then Home.
+// It is built from the same list as everything else, so a new project shows
+// up here on every page without any edits.
+
+import { withBase, type ListedProject } from '../lib/projects';
+
+interface Props {
+  projects: ListedProject[];
+}
+
+const { projects } = Astro.props;
+---
+
+<nav class="strip strip--nav" aria-label="More projects">
+  {projects.map((project) => (
+    <a class="strip__cell" href={project.url}>
+      <span class="strip__tag mono">({project.number}) {project.tag}</span>
+      <span>{project.data.name}</span>
+    </a>
+  ))}
+  <a class="strip__cell" href={withBase('/#projects')}>
+    <span class="strip__tag strip__tag--quiet mono">← Home</span>
+    <span>All projects</span>
+  </a>
+</nav>
